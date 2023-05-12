@@ -1,7 +1,6 @@
 import { useState } from "react";
 import FormInput from "../components/FormInput";
 
-
 export default function Register() {
 	const [values, setValues] = useState({
 		name: "",
@@ -64,7 +63,7 @@ export default function Register() {
 
 	return (
 		<form onSubmit={handleSubmit} className="registerForm">
-			<h4>REGISTER HERE!</h4>
+			<h4 className="formTitle">REGISTER HERE!</h4>
 			{inputs.map((input) => {
 				return (
 					<FormInput
@@ -75,7 +74,9 @@ export default function Register() {
 					/>
 				);
 			})}
-			<button type="submit">Register</button>
+			<button className="submitButton" type="submit">
+				Register
+			</button>
 		</form>
 	);
 }

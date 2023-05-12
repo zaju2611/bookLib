@@ -41,8 +41,8 @@ export default function Login() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="registerForm">
-			<h4>LOGIN HERE!</h4>
+		<form onSubmit={handleSubmit} className="loginForm">
+			<h4 className="formTitle">LOGIN HERE!</h4>
 			{inputs.map((input) => {
 				return (
 					<FormInput
@@ -53,7 +53,9 @@ export default function Login() {
 					/>
 				);
 			})}
-			<button type="submit">Register</button>
+			<button className="submitButton" type="submit">
+				Log In
+			</button>
 		</form>
 	);
 }
