@@ -1,11 +1,12 @@
 import CustomLink from "./CustomLink";
 import { Link } from "react-router-dom";
+import logo from "../icons/logo.svg";
 
 export default function NavBar() {
 	return (
 		<nav className="nav">
 			<Link to="/" className="site-title">
-				BookLib
+				<img src={logo} alt="logo"></img>
 			</Link>
 			<ul>
 				<CustomLink to="/login">Login</CustomLink>

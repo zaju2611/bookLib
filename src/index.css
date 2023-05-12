@@ -21,7 +21,7 @@ body {
 .container {
 	position: relative;
 	text-align: center;
-	min-height: calc(100vh - 75px);
+	min-height: calc(100vh - 90px);
 	background: url("./images/background.jpg");
 }
 
@@ -37,7 +37,7 @@ body {
 
 .nav {
 	background-color: var(--pink);
-	height: 75px;
+	height: 90px;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
@@ -46,7 +46,7 @@ body {
 }
 
 .site-title {
-	font-size: 2rem;
+	margin-left: 2rem;
 }
 
 .nav ul {
