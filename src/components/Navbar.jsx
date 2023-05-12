@@ -5,7 +5,7 @@ export default function NavBar() {
 	return (
 		<nav className="nav">
 			<Link to="/" className="site-title">
-				Site Name
+				BookLib
 			</Link>
 			<ul>
 				<CustomLink to="/login">Login</CustomLink>
