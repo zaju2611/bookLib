@@ -21,7 +21,7 @@ body {
 .container {
 	position: relative;
 	text-align: center;
-	min-height: calc(100vh - 75px);
+	min-height: calc(100vh - 90px);
 	background: url("./images/background.jpg");
 }
 
@@ -33,11 +33,12 @@ body {
 	height: 100%;
 	width: 100%;
 	background: rgba(255, 255, 255, 0.3);
+	pointer-events: none;
 }
 
 .nav {
 	background-color: var(--pink);
-	height: 75px;
+	height: 90px;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
@@ -46,9 +47,18 @@ body {
 }
 
 .site-title {
-	font-size: 2rem;
+	margin-left: 2rem;
 }
 
+.test {
+	z-index: 10;
+	background-color: var(--pink);
+}
+
+.testowy {
+	z-index: 1000;
+	cursor: pointer;
+}
 .nav ul {
 	padding: 0;
 	margin: 0;
@@ -102,6 +112,7 @@ body {
 	background-color: var(--pink);
 	padding: 1.3rem;
 	border-radius: 20px;
+	width: 350px;
 }
 
 .formTitle {
@@ -130,7 +141,8 @@ body {
 	margin: 0.5rem 0rem;
 }
 
-.submitButton::before {
+.submitButton::before,
+.errorButton::before {
 	content: "";
 	position: absolute;
 	top: -15px;
@@ -146,7 +158,8 @@ body {
 	transition: all 0.5s;
 	z-index: -5;
 }
-.submitButton:hover::before {
+.submitButton:hover::before,
+.errorButton:hover::before {
 	left: 130%;
 }
 
@@ -173,6 +186,45 @@ body {
 	margin-bottom: 0.3rem;
 }
 
+.errorInfo {
+	position: absolute;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+	top: 25px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 200px;
+	height: 100px;
+	background-color: var(--peach);
+	color: var(--milk-white);
+	border-radius: 10px;
+	opacity: 0;
+}
+
+.errorInfoActive {
+	animation: showErr 0.5s linear forwards;
+}
+
+.errorText {
+	margin: 0.2rem;
+	font-size: 1rem;
+}
+
+.errorButton {
+	position: relative;
+	box-sizing: border-box;
+	border-radius: 10px;
+	border: 2px solid var(--beige);
+	font-size: 0.7rem;
+	padding: 0.2rem 0.8rem;
+	background-color: transparent;
+	overflow: hidden;
+	color: var(--milk-white);
+	cursor: pointer;
+}
+
 input:focus {
 	outline: none;
 	border: 3px solid var(--peach);
@@ -184,4 +236,13 @@ input:invalid[focused="true"] {
 
 input:invalid[focused="true"] ~ span {
 	display: block;
+}
+
+@keyframes showErr {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
