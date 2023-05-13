@@ -1,7 +1,15 @@
 import { useState } from "react";
 import FormInput from "../components/FormInput";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../serivces/firebase";
+import { useNavigate } from "react-router-dom";
+import { uid } from "uid";
+import { set, ref } from "firebase/database";
+import ErrorInfo from "../components/ErrorInfo";
 
 export default function Register() {
+	const navigate = useNavigate();
+	const [error, setError] = useState("");
 	const [values, setValues] = useState({
 		name: "",
 		email: "",
@@ -53,30 +61,60 @@ export default function Register() {
 		},
 	];
 
+	const writeToDatabase = () => {
+		const uuid = uid();
+		set(ref(db, `users/${uuid}`), {
+			userId: uuid,
+			name: values.name,
+			email: values.email,
+		});
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		createUserWithEmailAndPassword(auth, values.email, values.password)
+			.then((userCredential) => {
+				console.log(userCredential);
+				writeToDatabase();
+				navigate("/");
+			})
+			.catch((error) => {
+				if (error.code === "auth/email-already-in-use") {
+					setError("User with this email already exists. Log in.");
+				} else {
+					setError("An error occurred. Please try again later.");
+				}
+			});
 	};
 
 	const onChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
+	const closeErrorPopup = () => {
+		setError("");
+		navigate("/login");
+	};
+
 	return (
-		<form onSubmit={handleSubmit} className="registerForm">
-			<h4 className="formTitle">REGISTER HERE!</h4>
-			{inputs.map((input) => {
-				return (
-					<FormInput
-						key={input.id}
-						{...input}
-						values={values[input.name]}
-						onChange={onChange}
-					/>
-				);
-			})}
-			<button className="submitButton" type="submit">
-				Register
-			</button>
-		</form>
+		<div>
+			{error && <ErrorInfo onClose={closeErrorPopup}>{error}</ErrorInfo>}
+			<form onSubmit={handleSubmit} className="registerForm">
+				<h4 className="formTitle">REGISTER HERE!</h4>
+				{inputs.map((input) => {
+					return (
+						<FormInput
+							key={input.id}
+							{...input}
+							values={values[input.name]}
+							onChange={onChange}
+						/>
+					);
+				})}
+				<button className="submitButton" type="submit">
+					Register
+				</button>
+			</form>
+		</div>
 	);
 }
