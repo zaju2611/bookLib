@@ -1,8 +1,11 @@
 import { GiBookmarklet } from "react-icons/gi";
 import { useState } from "react";
+import FavoritesButton from "./FavoritesButton";
+import { useAuth } from "../hooks/useAuth";
 
 export default function SearchResult({ data }) {
 	const [isExpanded, setIsExpanded] = useState(false);
+	const user = useAuth();
 	let image = null;
 
 	if (
@@ -34,9 +37,17 @@ export default function SearchResult({ data }) {
 				style={{ borderRadius: isExpanded ? "10px 10px 0px 0px" : "10px" }}>
 				{image}
 				<div className="infoContainer">
-					<p className="author">Author: {data.volumeInfo.authors[0]}</p>
+					<p className="author">
+						Author:
+						{data.volumeInfo.authors && data.volumeInfo.authors[0]
+							? data.volumeInfo.authors[0]
+							: "--"}
+					</p>
 					<p className="title">{data.volumeInfo.title}</p>
 				</div>
+				{user && (
+					<FavoritesButton className="buttonAddToFavorites" book={data} />
+				)}
 			</div>
 			<div
 				className="descriptionContainer"

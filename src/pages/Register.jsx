@@ -3,7 +3,7 @@ import FormInput from "../components/FormInput";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../serivces/firebase";
 import { useNavigate } from "react-router-dom";
-import { uid } from "uid";
+
 import { set, ref } from "firebase/database";
 import ErrorInfo from "../components/ErrorInfo";
 
@@ -61,10 +61,8 @@ export default function Register() {
 		},
 	];
 
-	const writeToDatabase = () => {
-		const uuid = uid();
-		set(ref(db, `users/${uuid}`), {
-			userId: uuid,
+	const writeToDatabase = (userId) => {
+		set(ref(db, `users/${userId}`), {
 			name: values.name,
 			email: values.email,
 		});
@@ -75,7 +73,7 @@ export default function Register() {
 		createUserWithEmailAndPassword(auth, values.email, values.password)
 			.then((userCredential) => {
 				console.log(userCredential);
-				writeToDatabase();
+				writeToDatabase(userCredential.user.uid);
 				navigate("/");
 			})
 			.catch((error) => {

@@ -24,7 +24,7 @@ export default function SearchBar({ onSetBooks }) {
 
 	return (
 		<form onSubmit={handleSearch} className="input-wrapper">
-			<FaSearch id="searchIcon" />
+			<FaSearch id="searchIcon" onClick={handleSearch} />
 			<input
 				className="searchInput"
 				placeholder="Search book"

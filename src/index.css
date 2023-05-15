@@ -5,6 +5,7 @@
 	--pink: #fea1a1;
 	--grey: #9ba4b5;
 	--black: #000;
+	--red: #a30000;
 }
 
 * {
@@ -254,7 +255,7 @@ input:invalid[focused="true"] ~ span {
 	box-shadow: 0 0 20px 5px var(--black);
 	display: flex;
 	align-items: center;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 .searchInput {
@@ -274,6 +275,7 @@ input:invalid[focused="true"] ~ span {
 
 #searchIcon {
 	color: var(--black);
+	cursor: pointer;
 }
 
 .resultsList {
@@ -301,12 +303,13 @@ input:invalid[focused="true"] ~ span {
 	background-color: var(--pink);
 	width: 95%;
 	padding: 10px;
-
 	cursor: pointer;
 }
+
 .resultContainer:first-child {
 	margin-top: 20px;
 }
+
 .accordion:last-child {
 	margin-bottom: 20px;
 }
@@ -342,6 +345,29 @@ input:invalid[focused="true"] ~ span {
 	font-size: 1rem;
 	font-weight: bold;
 }
+
+.circleButton {
+	position: absolute;
+	border: 1px solid var(--pink);
+	width: 30px;
+	height: 30px;
+	bottom: -13px;
+	right: 15px;
+	border-radius: 50%;
+	background-color: var(--milk-white);
+}
+
+.heart {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 20px;
+	width: 20px;
+	color: var(--red);
+	cursor: pointer;
+}
+
 @keyframes showErr {
 	from {
 		opacity: 0;
