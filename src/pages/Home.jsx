@@ -8,8 +8,6 @@ export default function Home() {
 		setBooks(books);
 	};
 
-	console.log(books);
-
 	return (
 		<div className="container search">
 			<h1>Search your book</h1>
