@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { update, ref, onValue } from "firebase/database";
-import { auth, db } from "../serivces/firebase";
+import { db } from "../serivces/firebase";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Rating({ book }) {
 	const [rating, setRating] = useState(null);
 	const [hover, setHover] = useState(null);
-	const [user, setUser] = useState(null);
-
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-			setUser(currentUser);
-		});
-		return () => {
-			unsubscribe();
-		};
-	}, []);
+	const user = useAuth();
 
 	useEffect(() => {
 		if (!user) return;
