@@ -1,20 +1,12 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { set, ref, onValue } from "firebase/database";
-import { auth, db } from "../serivces/firebase";
+import { db } from "../serivces/firebase";
+import { useAuth } from "../hooks/useAuth";
 
 export default function FavoritesButton({ book }) {
 	const [isFavorite, setIsFavorite] = useState(false);
-	const [user, setUser] = useState(null);
-
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-			setUser(currentUser);
-		});
-		return () => {
-			unsubscribe();
-		};
-	}, []);
+	const user = useAuth();
 
 	useEffect(() => {
 		if (user) {
