@@ -10,7 +10,7 @@ export default function Home() {
 
 	return (
 		<div className="container search">
-			<h1>Search your book</h1>
+			<h1 className="pageTitle">Search your book</h1>
 			<SearchBar onSetBooks={handleSetBooks} />
 			<SearchResultsList books={books} />
 		</div>
