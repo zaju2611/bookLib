@@ -1,6 +1,5 @@
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { useState, useEffect } from "react";
-import { uid } from "uid";
 import { set, ref, onValue } from "firebase/database";
 import { auth, db } from "../serivces/firebase";
 
@@ -35,9 +34,7 @@ export default function FavoritesButton({ book }) {
 	}, [book, user]);
 
 	const addToFavorites = (book) => {
-		const uuid = uid();
-
-		set(ref(db, `users/${user.uid}/favorites/${uuid}`), {
+		set(ref(db, `users/${user.uid}/favorites/${book.volumeInfo.title}`), {
 			title: book.volumeInfo.title,
 			author: book.volumeInfo.authors[0],
 		});

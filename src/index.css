@@ -83,21 +83,32 @@ body {
 
 .nav li.active {
 	background-color: var(--peach);
-	border-bottom: 1px solid var(--pink);
+	color: var(--red);
 }
 
-.nav li.active::after {
+.nav li.active::after,
+.nav li.active::before {
 	content: "";
 	position: absolute;
-	bottom: 0;
 	left: 50%;
 	width: 0;
 	height: 0;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
-	border-bottom: 7px solid var(--pink);
 	border-top: none;
 	transform: translateX(-50%);
+}
+
+.nav li.active::after {
+	bottom: 0;
+	border-bottom: 10px solid var(--pink);
+	border-top: none;
+}
+
+.nav li.active::before {
+	top: 0;
+	border-bottom: none;
+	border-top: 10px solid var(--pink);
 }
 
 .nav li:hover {
@@ -411,6 +422,16 @@ input:invalid[focused="true"] ~ span {
 	border-radius: 10px;
 	color: var(--black);
 	border-spacing: 0.5rem;
+}
+
+.star {
+	font-size: 1rem;
+
+	cursor: pointer;
+}
+
+input[type="radio"] {
+	display: none;
 }
 
 @keyframes showErr {

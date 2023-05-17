@@ -3,6 +3,7 @@ import FavoriteTable from "../components/FavoriteTable";
 import { FaSearch } from "react-icons/fa";
 import { auth, db } from "../serivces/firebase";
 import { get, ref } from "firebase/database";
+import Rating from "../components/Rating";
 
 export default function Favorites() {
 	const [favoriteBooks, setFavoriteBooks] = useState([]);
@@ -46,6 +47,10 @@ export default function Favorites() {
 			render: (book) => book.title,
 			sortValue: (book) => book.title,
 		},
+		{
+			label: "Your rating",
+			render: (book) => <Rating book={book} />,
+		},
 	];
 
 	const keyFn = (book) => {
@@ -67,7 +72,7 @@ export default function Favorites() {
 	return (
 		<div className="container favorite">
 			<h1 className="pageTitle">Your favorite books</h1>
-			<form onSubmit className="input-wrapper">
+			<form className="input-wrapper">
 				<FaSearch id="searchIcon" />
 				<input
 					className="searchInput"
