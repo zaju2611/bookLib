@@ -35,7 +35,7 @@ export default function NavBar() {
 				{isLoggedIn ? (
 					<>
 						<CustomLink to="/favorites">Favorites</CustomLink>
-						<CustomLink to="/home" onClick={handleSignOut}>
+						<CustomLink to="/home" className="signOut" onClick={handleSignOut}>
 							Sign out&nbsp;
 							<VscSignOut />
 						</CustomLink>
