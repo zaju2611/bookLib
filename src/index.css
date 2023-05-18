@@ -569,6 +569,9 @@ input[type="radio"] {
 	.input-wrapper {
 		width: 85%;
 	}
+	.resultsList {
+		width: 85%;
+	}
 }
 
 @media (max-width: 376px) {
