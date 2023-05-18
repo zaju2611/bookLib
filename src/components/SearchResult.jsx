@@ -5,6 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 
 export default function SearchResult({ data }) {
 	const [isExpanded, setIsExpanded] = useState(false);
+
 	const user = useAuth();
 	let image = null;
 
@@ -16,7 +17,7 @@ export default function SearchResult({ data }) {
 	) {
 		image = (
 			<img
-				className="resultImage"
+				className="resultImage skeleton"
 				src={data.volumeInfo.imageLinks.thumbnail}
 				alt={data.volumeInfo.title}
 			/>

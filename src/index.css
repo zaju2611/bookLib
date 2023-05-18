@@ -51,15 +51,6 @@ body {
 	margin-left: 2rem;
 }
 
-.test {
-	z-index: 10;
-	background-color: var(--pink);
-}
-
-.testowy {
-	z-index: 1000;
-	cursor: pointer;
-}
 .nav ul {
 	padding: 0;
 	margin: 0;
@@ -335,9 +326,10 @@ input:invalid[focused="true"] ~ span {
 }
 
 .resultImage {
-	width: 75px;
-	height: 110px;
-	margin: 10px;
+	width: 90px;
+	height: 120px;
+	margin: 5px;
+	border-radius: 15px;
 }
 
 .infoContainer {
@@ -351,6 +343,7 @@ input:invalid[focused="true"] ~ span {
 
 .author {
 	font-size: 0.8rem;
+	margin-bottom: 1rem;
 }
 
 .title {
@@ -432,6 +425,67 @@ input:invalid[focused="true"] ~ span {
 
 input[type="radio"] {
 	display: none;
+}
+
+.alertContainer {
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	background-color: var(--pink);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+
+.alertIcon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.7rem;
+	transition: color 0.3s;
+	cursor: pointer;
+}
+
+.alertIcon:hover {
+	color: var(--peach);
+}
+
+.message {
+	position: absolute;
+	bottom: 85px;
+	right: -20px;
+	width: 200px;
+	height: 100px;
+	background: var(--milk-white);
+	border-radius: 12px;
+	animation: zoomIn;
+	animation-duration: 0.5s;
+}
+
+.message::before {
+	content: "";
+	position: absolute;
+	left: 70%;
+	top: 100%;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-top: 24px solid var(--milk-white);
+	border-right: 10px solid transparent;
+}
+
+.messageText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	color: var(--black);
+}
+
+.clipLoader {
+	margin: 100px;
 }
 
 @keyframes showErr {
